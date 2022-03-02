@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <title>London Map</title>
+    <!-- Your Code Goes Here -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"> </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet">
+    
+    <!-- Do not change this line of code -->
+    <style>body {margin: 0; padding: 0;} #map {position: absolute; top: 0; bottom: 0; width: 100%;}</style>
+
+    <body>
+        <div id="map"></div>
+       
+        <!-- Your Code Goes Here -->
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoia20xMi0zNCIsImEiOiJja3oxaWx5NWYxbTl1MnZscjZnNGM2OGNzIn0.SeLM6uYvXg8-rzaWq5uutg'
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v10',
+                center: [-0.127758,51.507351],
+                zoom : 10
+            }); 
+
+            var marker = new mapboxgl.Marker()
+                .setLngLat([0.1248, 51.4995])
+                .addTo(map);
+       
+            const myLocations = [
+                [0.0877, 51.5079],
+                [0.0759, 51.5081], 
+                [0.1196, 51.5033],
+                [0.1246, 51.5007],
+                [0.0763, 51.5086]
+            ]
+
+            let counter = 0; 
+            function move(){
+                setInterval(() => {
+                    if(counter <= myLocations.length){
+                        marker.setLngLat(myLocations[counter]);
+                        counter++;
+                    }
+                    
+                },1000);
+            }
+            move();
+       </script>
+
+    </body>
+</html>
